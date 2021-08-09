@@ -8,6 +8,6 @@ namespace SaintSender.Core.Interfaces
 {
     public interface IUserService
     {
-        bool EmailValid(string address);
+        bool IsValidEmail(string address);
     }
 }
