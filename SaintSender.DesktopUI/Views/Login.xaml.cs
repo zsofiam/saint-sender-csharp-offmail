@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaintSender.DesktopUI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,18 @@ namespace SaintSender.DesktopUI.Views
     /// </summary>
     public partial class Login : Window
     {
+        private LoginViewModel _vm;
+
         public Login()
         {
+            _vm = new LoginViewModel();
+            DataContext = _vm;
             InitializeComponent();
+        }
+
+        private void LoginVisual_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

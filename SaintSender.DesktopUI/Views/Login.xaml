@@ -15,13 +15,11 @@
 
             <TextBlock Visibility="Hidden" HorizontalAlignment="Center" Margin="10,10,10,0" TextWrapping="Wrap" Text="Sign In" VerticalAlignment="Top" Width="230" Height="72" FontFamily="Segoe UI Emoji" FontSize="48" FontWeight="Bold" TextAlignment="Center"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
-            <PasswordBox HorizontalAlignment="Center" Margin="0,174,0,0" VerticalAlignment="Top" BorderBrush="#bf5f2a" BorderThickness="0,0,0,2" Background="Transparent" Width="280" FontFamily="Yu Gothic Light" FontSize="14" />
+            <PasswordBox x:Name="PasswordVisual" HorizontalAlignment="Center" Margin="0,174,0,0" VerticalAlignment="Top" BorderBrush="#bf5f2a" BorderThickness="0,0,0,2" Background="Transparent" Width="280" FontFamily="Yu Gothic Light" FontSize="14" />
 
             <TextBlock HorizontalAlignment="Left" Margin="10,66,0,0" TextWrapping="Wrap" Text="Email Address" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
-            <TextBox HorizontalAlignment="Center" Height="25" Margin="0,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" BorderBrush="#bf5f2a" BorderThickness="0,0,0,2" Background="Transparent" FontFamily="Yu Gothic" FontSize="16" />
-            <Button x:Name="LoginVisual" Content="Login" HorizontalAlignment="Center" Margin="78,232,72,0" VerticalAlignment="Top" Width="150" Height="32" BorderBrush="#bf5f2a" BorderThickness="3,3,3,3" Background="{x:Null}" FontFamily="Yu Gothic UI"/>
-
-
+            <TextBox x:Name="EmaiLVisual" HorizontalAlignment="Center" Height="25" Margin="0,87,0,0" TextWrapping="Wrap" Text="{Binding Enail}" VerticalAlignment="Top" Width="280" BorderBrush="#bf5f2a" BorderThickness="0,0,0,2" Background="Transparent" FontFamily="Yu Gothic" FontSize="16" />
+            <Button x:Name="LoginVisual" Content="Login" HorizontalAlignment="Center" Margin="78,232,72,0" VerticalAlignment="Top" Width="150" Height="32" BorderBrush="#bf5f2a" BorderThickness="3,3,3,3" Background="{x:Null}" FontFamily="Yu Gothic UI" Click="LoginVisual_Click"/>
         </Grid>
 
     </Grid>
