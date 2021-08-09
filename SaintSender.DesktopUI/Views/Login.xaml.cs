@@ -31,7 +31,7 @@ namespace SaintSender.DesktopUI.Views
 
         private void LoginVisual_Click(object sender, RoutedEventArgs e)
         {
-            
+            _vm.Login();
         }
     }
 }
