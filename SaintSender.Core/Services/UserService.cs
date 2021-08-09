@@ -11,7 +11,15 @@ namespace SaintSender.Core.Services
     {
         public bool IsValidEmail(string address)
         {
-            
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(address);
+                return addr.Address == address;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
