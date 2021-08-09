@@ -1,6 +1,9 @@
 ﻿using SaintSender.DesktopUI.ViewModels;
 using System.Windows;
 
+//Debug for the login
+using SaintSender.DesktopUI.Views;
+
 namespace SaintSender.DesktopUI
 {
     /// <summary>
@@ -16,6 +19,9 @@ namespace SaintSender.DesktopUI
             _vm = new MainWindowViewModel();
             DataContext = _vm;
             InitializeComponent();
+
+            Login login = new Login();
+            login.Show();
         }
 
         private void GreetBtn_Click(object sender, RoutedEventArgs e)
