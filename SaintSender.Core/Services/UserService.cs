@@ -21,5 +21,10 @@ namespace SaintSender.Core.Services
                 return false;
             }
         }
+
+        public bool canAuthenticate(string address, string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

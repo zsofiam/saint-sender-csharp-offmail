@@ -31,7 +31,8 @@ namespace SaintSender.DesktopUI.Views
 
         private void LoginVisual_Click(object sender, RoutedEventArgs e)
         {
-            _vm.Login();
+            //I've read to NEVER store passwords in plaintext, so I just decided to pass it as an argument here
+            _vm.Login(PasswordVisual.Password);
         }
     }
 }

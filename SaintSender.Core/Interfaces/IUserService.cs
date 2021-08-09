@@ -9,5 +9,6 @@ namespace SaintSender.Core.Interfaces
     public interface IUserService
     {
         bool IsValidEmail(string address);
+        bool canAuthenticate(string address, string email);
     }
 }

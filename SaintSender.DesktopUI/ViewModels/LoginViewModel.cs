@@ -13,7 +13,6 @@ namespace SaintSender.DesktopUI.ViewModels
     class LoginViewModel : INotifyPropertyChanged
     {
         private string _email;
-        //private string _password;
         private readonly IUserService _userService;
 
         public String Email
@@ -34,11 +33,17 @@ namespace SaintSender.DesktopUI.ViewModels
             _userService = new UserService();
         }
 
-        public void Login()
+        public void Login(string password)
         {
             if (!_userService.IsValidEmail(Email))
             {
                 MessageBox.Show("Invalid email address!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!_userService.canAuthenticate(Email, password))
+            {
+                MessageBox.Show("Wrong credintals!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }
