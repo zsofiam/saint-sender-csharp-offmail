@@ -44,7 +44,7 @@ namespace SaintSender.DesktopUI.ViewModels
                 return;
             }
 
-            // See if we are online
+            // See if we are online -> if not we should check if we have LOCAL STORAGE
             if (!_enviromentService.IsOnline())
             {
                 MessageBox.Show("Please check your connection!", "No internet", MessageBoxButton.OK, MessageBoxImage.Warning);
