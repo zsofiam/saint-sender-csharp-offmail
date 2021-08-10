@@ -67,6 +67,13 @@ namespace SaintSender.DesktopUI.ViewModels
 
             // Actually logged in
             _userService.SetLoggedIn(true);
+
+            //Save the login
+            if (saveLogin)
+            {
+                _userService.SaveCredentials(Email, password);
+                MessageBox.Show("SAVE");
+            }
             return true;
         }
     }

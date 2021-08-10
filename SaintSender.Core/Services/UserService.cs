@@ -10,11 +10,14 @@ using System.Net;
 using System.Threading;
 using System.Windows;
 using System.IO;
+using System.IO.IsolatedStorage;
 
 namespace SaintSender.Core.Services
 {
     public class UserService : IUserService
     {
+        private const string AUTO_LOGIN_FILE = "autologin.cfg";
+
         private bool LoggedIn = false;
 
         // Check if the email address we used is valid
@@ -53,9 +56,17 @@ namespace SaintSender.Core.Services
         }
 
         // If the user checks auto login, save the credentials
-        public void SaveCredentials(string address, string email)
+        public void SaveCredentials(string address, string password)
         {
+            IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
 
+            using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(AUTO_LOGIN_FILE, FileMode.Create, store))
+            using (StreamWriter writer = new StreamWriter(stream))
+            {
+                writer.WriteLine(address);
+                // HEADS UP: YOU SHOULD HASH THIS
+                writer.WriteLine(password);
+            }
         }
 
         // Check if the auto login file exists and we can login back

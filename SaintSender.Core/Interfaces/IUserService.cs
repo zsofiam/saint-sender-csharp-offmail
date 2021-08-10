@@ -9,8 +9,8 @@ namespace SaintSender.Core.Interfaces
     public interface IUserService
     {
         bool IsValidEmail(string address);
-        bool CanAuthenticate(string address, string email);
-        void SaveCredentials(string address, string email);
+        bool CanAuthenticate(string address, string password);
+        void SaveCredentials(string address, string password);
         bool AutoLogin();
         bool IsLoggedIn();
         void SetLoggedIn(bool log);
