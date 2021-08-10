@@ -9,11 +9,13 @@ using MailKit.Net.Smtp;
 using System.Net;
 using System.Threading;
 using System.Windows;
+using System.IO;
 
 namespace SaintSender.Core.Services
 {
     public class UserService : IUserService
     {
+        // Check if the email address we used is valid
         public bool IsValidEmail(string address)
         {
             try
@@ -27,6 +29,7 @@ namespace SaintSender.Core.Services
             }
         }
 
+        // Check if the credentials are correct or not
         public bool CanAuthenticate(string address, string password)
         {
             using (var client = new SmtpClient())
@@ -47,7 +50,13 @@ namespace SaintSender.Core.Services
             }
         }
 
-        // THis is going to serve as a check if we can auto login back
+        // If the user checks auto login, save the credentials
+        public void SaveCredentials(string address, string email)
+        {
+
+        }
+
+        // Check if the auto login file exists and we can login back
         public bool AutoLogin()
         {
             return false;

@@ -10,7 +10,7 @@ namespace SaintSender.Core.Interfaces
     {
         bool IsValidEmail(string address);
         bool CanAuthenticate(string address, string email);
-
+        void SaveCredentials(string address, string email);
         bool AutoLogin();
     }
 }
