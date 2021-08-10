@@ -10,16 +10,16 @@
         <ImageBrush ImageSource="img/login-bg.jpg"/>
     </Window.Background>
     <Grid>
-        <Grid HorizontalAlignment="Center" Height="300" Margin="0,0,0,0" VerticalAlignment="Center" Width="300" Background="White">
+        <Grid HorizontalAlignment="Center" Height="272" Margin="447,218,454.6,180.4" VerticalAlignment="Center" Width="300" Background="White">
             <TextBlock HorizontalAlignment="Center" Margin="0,18,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" FontFamily="Yu Gothic Medium" FontSize="20" Height="29"/>
 
             <TextBlock Visibility="Hidden" HorizontalAlignment="Center" Margin="10,10,10,0" TextWrapping="Wrap" Text="Sign In" VerticalAlignment="Top" Width="230" Height="72" FontFamily="Segoe UI Emoji" FontSize="48" FontWeight="Bold" TextAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
-            <PasswordBox x:Name="PasswordVisual" HorizontalAlignment="Center" Margin="0,174,0,0" VerticalAlignment="Top" BorderBrush="#bf5f2a" BorderThickness="0,0,0,2" Background="Transparent" Width="280" FontFamily="Yu Gothic Light" FontSize="14" />
+            <TextBlock HorizontalAlignment="Left" Margin="16,136,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
+            <PasswordBox x:Name="PasswordVisual" HorizontalAlignment="Center" Margin="10,157,10,0" VerticalAlignment="Top" BorderBrush="#bf5f2a" BorderThickness="0,0,0,2" Background="Transparent" Width="250" FontFamily="Yu Gothic Light" FontSize="14" />
 
-            <TextBlock HorizontalAlignment="Left" Margin="10,66,0,0" TextWrapping="Wrap" Text="Email Address" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
-            <TextBox x:Name="EmaiLVisual" HorizontalAlignment="Center" Height="25" Margin="0,87,0,0" TextWrapping="Wrap" Text="{Binding Email}" VerticalAlignment="Top" Width="280" BorderBrush="#bf5f2a" BorderThickness="0,0,0,2" Background="Transparent" FontFamily="Yu Gothic" FontSize="16" />
-            <Button x:Name="LoginVisual" Content="Login" HorizontalAlignment="Center" Margin="78,232,72,0" VerticalAlignment="Top" Width="150" Height="32" BorderBrush="#bf5f2a" BorderThickness="3,3,3,3" Background="{x:Null}" FontFamily="Yu Gothic UI" Click="LoginVisual_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="16,66,0,0" TextWrapping="Wrap" Text="Email Address" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
+            <TextBox x:Name="EmaiLVisual" HorizontalAlignment="Center" Height="25" Margin="0,87,0,0" TextWrapping="Wrap" Text="{Binding Email}" VerticalAlignment="Top" Width="250" BorderBrush="#bf5f2a" BorderThickness="0,0,0,2" Background="Transparent" FontFamily="Yu Gothic" FontSize="16" />
+            <Button x:Name="LoginVisual" Content="Login" HorizontalAlignment="Center" Margin="78,215,72,0" VerticalAlignment="Top" Width="150" Height="32" BorderBrush="#bf5f2a" BorderThickness="3,3,3,3" Background="{x:Null}" FontFamily="Yu Gothic UI" Click="LoginVisual_Click"/>
         </Grid>
 
     </Grid>
