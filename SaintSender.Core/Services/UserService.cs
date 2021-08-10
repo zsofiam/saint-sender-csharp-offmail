@@ -27,7 +27,7 @@ namespace SaintSender.Core.Services
             }
         }
 
-        public bool canAuthenticate(string address, string password)
+        public bool CanAuthenticate(string address, string password)
         {
             using (var client = new SmtpClient())
             {
@@ -45,6 +45,12 @@ namespace SaintSender.Core.Services
                     return false;
                 }
             }
+        }
+
+        // THis is going to serve as a check if we can auto login back
+        public bool AutoLogin()
+        {
+            return false;
         }
     }
 }

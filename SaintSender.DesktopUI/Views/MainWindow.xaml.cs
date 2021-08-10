@@ -20,14 +20,26 @@ namespace SaintSender.DesktopUI
             DataContext = _vm;
             InitializeComponent();
 
-            Login login = new Login();
-            login.Show();
+
+            // Auto Login from storage
+            if (_vm.AutoLogin())
+            {
+                
+            }
+            // Can't login
+            else
+            {
+                this.Visibility = Visibility.Hidden;
+
+                Login login = new Login();
+                login.Show();
+            }
         }
 
         private void GreetBtn_Click(object sender, RoutedEventArgs e)
         {
             // dispatch user interaction to view model
-            _vm.Greet();
+            //_vm.Greet();
         }
     }
 }

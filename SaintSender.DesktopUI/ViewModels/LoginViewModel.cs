@@ -59,7 +59,7 @@ namespace SaintSender.DesktopUI.ViewModels
             }
 
             // Auth the account
-            if (!_userService.canAuthenticate(Email, password))
+            if (!_userService.CanAuthenticate(Email, password))
             {
                 MessageBox.Show("Wrong credintals!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
