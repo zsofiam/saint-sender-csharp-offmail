@@ -37,6 +37,13 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public void Login(string password)
         {
+            // Make sure our credintals are not empty
+            if (Email == string.Empty || password == string.Empty)
+            {
+                MessageBox.Show("Please enter an email address and a password!", "No internet", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             // See if we are online
             if (!_enviromentService.IsOnline())
             {
