@@ -58,6 +58,11 @@ namespace SaintSender.DesktopUI.ViewModels
             return _userService.AutoLogin();
         }
 
+        public bool IsLoggedIn()
+        {
+            return _userService.IsLoggedIn();
+        }
+
         /// <summary>
         /// Call a vendor service and apply its value into <see cref="Greeting"/> property.
         /// </summary>

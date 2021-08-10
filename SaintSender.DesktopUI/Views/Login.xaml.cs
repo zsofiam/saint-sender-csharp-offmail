@@ -22,18 +22,27 @@ namespace SaintSender.DesktopUI.Views
     public partial class Login : Window
     {
         private LoginViewModel _vm;
+        private Window MainWindow;
 
-        public Login()
+        public Login(Window main)
         {
             _vm = new LoginViewModel();
             DataContext = _vm;
+
+            MainWindow = main;
             InitializeComponent();
         }
 
         private void LoginVisual_Click(object sender, RoutedEventArgs e)
         {
+            //Try to login
             //I've read to NEVER store passwords in plaintext, so I just decided to pass it as an argument here
-            _vm.Login(PasswordVisual.Password);
+            if (_vm.Login(PasswordVisual.Password, RememberMeVisual.IsChecked.Value))
+            {
+                this.Visibility = Visibility.Hidden;
+
+                MainWindow.Visibility = Visibility.Visible;
+            }
         }
     }
 }

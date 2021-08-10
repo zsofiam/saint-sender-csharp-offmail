@@ -21,7 +21,7 @@
             <TextBox x:Name="EmaiLVisual" HorizontalAlignment="Center" Height="25" Margin="0,87,0,0" TextWrapping="Wrap" Text="{Binding Email}" VerticalAlignment="Top" Width="250" BorderBrush="#bf5f2a" BorderThickness="0,0,0,2" Background="Transparent" FontFamily="Yu Gothic" FontSize="16" />
             <Button x:Name="LoginVisual" Content="Login" HorizontalAlignment="Center" Margin="78,215,72,0" VerticalAlignment="Top" Width="150" Height="32" BorderBrush="#bf5f2a" BorderThickness="3,3,3,3" Background="{x:Null}" FontFamily="Yu Gothic UI" Click="LoginVisual_Click"/>
 
-            <CheckBox Content="" HorizontalAlignment="Left" Margin="257,190,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Light"  BorderBrush="#bf5f2a" BorderThickness="1,1,1,1" Background="{x:Null}"/>
+            <CheckBox x:Name="RememberMeVisual" Content="" HorizontalAlignment="Left" Margin="257,190,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Light"  BorderBrush="#bf5f2a" BorderThickness="1,1,1,1" Background="{x:Null}"/>
             <TextBlock HorizontalAlignment="Left" Margin="178,189,0,0" TextWrapping="Wrap" Text="Remember Me" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
         </Grid>
 

@@ -35,38 +35,39 @@ namespace SaintSender.DesktopUI.ViewModels
             _enviromentService = new EnviromentService();
         }
 
-        public void Login(string password)
+        public bool Login(string password, bool saveLogin)
         {
             // Make sure our credintals are not empty
             if (Email == string.Empty || password == string.Empty)
             {
                 MessageBox.Show("Please enter an email address and a password!", "No internet", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                return false;
             }
 
             // See if we are online -> if not we should check if we have LOCAL STORAGE
             if (!_enviromentService.IsOnline())
             {
                 MessageBox.Show("Please check your connection!", "No internet", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                return false;
             }
 
             // Validate email address
             if (!_userService.IsValidEmail(Email))
             {
                 MessageBox.Show("Invalid email address!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                return false;
             }
 
             // Auth the account
             if (!_userService.CanAuthenticate(Email, password))
             {
                 MessageBox.Show("Wrong credintals!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                return false;
             }
 
             // Actually logged in
-            MessageBox.Show("Authed");
+            _userService.SetLoggedIn(true);
+            return true;
         }
     }
 }

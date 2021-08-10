@@ -31,7 +31,7 @@ namespace SaintSender.DesktopUI
             {
                 this.Visibility = Visibility.Hidden;
 
-                Login login = new Login();
+                Login login = new Login(this);
                 login.Show();
             }
         }

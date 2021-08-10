@@ -15,6 +15,8 @@ namespace SaintSender.Core.Services
 {
     public class UserService : IUserService
     {
+        private bool LoggedIn = false;
+
         // Check if the email address we used is valid
         public bool IsValidEmail(string address)
         {
@@ -60,6 +62,16 @@ namespace SaintSender.Core.Services
         public bool AutoLogin()
         {
             return false;
+        }
+
+        public bool IsLoggedIn()
+        {
+            return LoggedIn;
+        }
+
+        public void SetLoggedIn(bool log)
+        {
+            LoggedIn = log;
         }
     }
 }
