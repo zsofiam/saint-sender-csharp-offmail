@@ -17,6 +17,7 @@ namespace SaintSender.DesktopUI.Views
 {
     /// <summary>
     /// Interaction logic for Login.xaml
+    /// WARNING: Closing this window won't end the app!
     /// </summary>
     public partial class Login : Window
     {
