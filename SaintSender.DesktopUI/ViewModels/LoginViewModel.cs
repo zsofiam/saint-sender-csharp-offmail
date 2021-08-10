@@ -46,6 +46,9 @@ namespace SaintSender.DesktopUI.ViewModels
                 MessageBox.Show("Wrong credintals!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
+
+            MessageBox.Show("Authed");
         }
     }
 }

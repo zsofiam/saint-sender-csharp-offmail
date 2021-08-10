@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MailKit;
+using MailKit.Net.Smtp;
+using System.Net;
+using System.Threading;
+using System.Windows;
 
 namespace SaintSender.Core.Services
 {
@@ -22,9 +27,24 @@ namespace SaintSender.Core.Services
             }
         }
 
-        public bool canAuthenticate(string address, string email)
+        public bool canAuthenticate(string address, string password)
         {
-            throw new NotImplementedException();
+            using (var client = new SmtpClient())
+            {
+                try
+                {
+                    client.Connect("smtp.gmail.com", 465, true);
+                    client.AuthenticationMechanisms.Remove("XOAUTH");
+                    client.Authenticate(address, password);
+                    client.Disconnect(true);
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
     }
 }
