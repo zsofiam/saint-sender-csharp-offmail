@@ -14,6 +14,7 @@ namespace SaintSender.DesktopUI.ViewModels
     {
         private string _email;
         private readonly IUserService _userService;
+        private readonly IEnviromentService _enviromentService;
 
         public String Email
         {
@@ -31,23 +32,33 @@ namespace SaintSender.DesktopUI.ViewModels
         public LoginViewModel()
         {
             _userService = new UserService();
+            _enviromentService = new EnviromentService();
         }
 
         public void Login(string password)
         {
+            // See if we are online
+            if (!_enviromentService.IsOnline())
+            {
+                MessageBox.Show("Please check your connection!", "No internet", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Validate email address
             if (!_userService.IsValidEmail(Email))
             {
                 MessageBox.Show("Invalid email address!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            // Auth the account
             if (!_userService.canAuthenticate(Email, password))
             {
                 MessageBox.Show("Wrong credintals!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-
+            // Actually logged in
             MessageBox.Show("Authed");
         }
     }
