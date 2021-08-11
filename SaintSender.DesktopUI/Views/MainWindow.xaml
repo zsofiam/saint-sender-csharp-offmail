@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI"
         mc:Ignorable="d"
-        Title="SainSender"
-        Height="450"
-        Width="800">
+        Title="Offmail - Inbox"
+        Height="700" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Window.Background>
+        <ImageBrush ImageSource="img/inbox-bg.jpg"/>
+    </Window.Background>
     <Grid>
         <TextBox Text="{Binding Name}"
                  ToolTip="Write a name here a click the Greet button"
@@ -29,5 +31,6 @@
                    FontSize="28"
                    TextWrapping="Wrap"
                    VerticalAlignment="Top" />
+        <Button Content="Logout" HorizontalAlignment="Left" Height="20" Margin="1080,18,0,0" VerticalAlignment="Top" Width="55" Click="Logout_Button_Click" RenderTransformOrigin="7.004,0.61" />
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using SaintSender.Core.Interfaces;
 using SaintSender.Core.Services;
+using System;
 using System.ComponentModel;
 
 namespace SaintSender.DesktopUI.ViewModels
@@ -19,6 +20,11 @@ namespace SaintSender.DesktopUI.ViewModels
         /// Whenever a property value changed the subscribed event handler is called.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        internal void logout()
+        {
+            _userService.SetLoggedIn(false);
+        }
 
         /// <summary>
         /// Gets or sets value of Greeting.
