@@ -24,7 +24,7 @@ namespace SaintSender.DesktopUI
             // Auto Login from storage
             if (_vm.AutoLogin())
             {
-                
+                this.Visibility = Visibility.Visible;
             }
             // Can't login
             else

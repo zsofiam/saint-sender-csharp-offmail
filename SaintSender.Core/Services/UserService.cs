@@ -72,7 +72,28 @@ namespace SaintSender.Core.Services
         // Check if the auto login file exists and we can login back
         public bool AutoLogin()
         {
-            return false;
+            string address = string.Empty;
+            string password = string.Empty;
+
+            IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+
+            try
+            {
+                using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(AUTO_LOGIN_FILE, FileMode.Create, store))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    address = reader.ReadLine();
+                    // HEADS UP: YOU SHOULD HASH THIS
+                    password = reader.ReadLine();
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            if (CanAuthenticate(address, password)) return true;
+            else return false;
         }
 
         public bool IsLoggedIn()

@@ -72,7 +72,6 @@ namespace SaintSender.DesktopUI.ViewModels
             if (saveLogin)
             {
                 _userService.SaveCredentials(Email, password);
-                MessageBox.Show("SAVE");
             }
             return true;
         }
