@@ -10,9 +10,10 @@ namespace SaintSender.DesktopUI.ViewModels
     /// </summary>
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private string _name;
-        private string _greeting;
-        private readonly IGreetService _greetService;
+        //private string _name;
+        //private string _greeting;
+        //private readonly IGreetService _greetService;
+        private readonly IUserService _userService;
 
         /// <summary>
         /// Whenever a property value changed the subscribed event handler is called.
@@ -22,7 +23,7 @@ namespace SaintSender.DesktopUI.ViewModels
         /// <summary>
         /// Gets or sets value of Greeting.
         /// </summary>
-        public string Greeting
+        /*public string Greeting
         {
             get { return _greeting; }
             set
@@ -43,20 +44,31 @@ namespace SaintSender.DesktopUI.ViewModels
                 _name = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
             }
-        }
+        }*/
 
         public MainWindowViewModel()
         {
-            Name = string.Empty;
-            _greetService = new GreetService();
+            //Name = string.Empty;
+            //_greetService = new GreetService();
+            _userService = new UserService();
+        }
+
+        public bool AutoLogin()
+        {
+            return _userService.AutoLogin();
+        }
+
+        public bool IsLoggedIn()
+        {
+            return _userService.IsLoggedIn();
         }
 
         /// <summary>
         /// Call a vendor service and apply its value into <see cref="Greeting"/> property.
         /// </summary>
-        public void Greet()
+        /*public void Greet()
         {
             Greeting = _greetService.Greet(Name);
-        }
+        }*/
     }
 }
