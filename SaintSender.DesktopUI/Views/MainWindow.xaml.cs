@@ -44,6 +44,9 @@ namespace SaintSender.DesktopUI
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
+            this.Visibility = Visibility.Hidden;
+            Login login = new Login(this);
+            login.Show();
             _vm.logout();
         }
     }

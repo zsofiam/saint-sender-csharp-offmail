@@ -23,7 +23,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         internal void logout()
         {
-            throw new NotImplementedException();
+            _userService.SetLoggedIn(false);
         }
 
         /// <summary>

@@ -8,6 +8,9 @@
         Title="SaintSender - Inbox"
         Height="450"
         Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="img/inbox-bg.jpg"/>
+    </Window.Background>
     <Grid>
         <TextBox Text="{Binding Name}"
                  ToolTip="Write a name here a click the Greet button"
@@ -29,6 +32,6 @@
                    FontSize="28"
                    TextWrapping="Wrap"
                    VerticalAlignment="Top" />
-        <Button Content="Logout" HorizontalAlignment="Left" Height="19" Margin="665,13,0,0" VerticalAlignment="Top" Width="50" Click="Logout_Button_Click" />
+        <Button Content="Logout" HorizontalAlignment="Left" Height="20" Margin="665,13,0,0" VerticalAlignment="Top" Width="55" Click="Logout_Button_Click" />
     </Grid>
 </Window>
