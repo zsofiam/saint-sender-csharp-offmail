@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI"
         mc:Ignorable="d"
-        Title="SainSender"
+        Title="SaintSender - Inbox"
         Height="450"
         Width="800">
     <Grid>
@@ -29,5 +29,6 @@
                    FontSize="28"
                    TextWrapping="Wrap"
                    VerticalAlignment="Top" />
+        <Button Content="Logout" HorizontalAlignment="Left" Height="19" Margin="665,13,0,0" VerticalAlignment="Top" Width="50" Click="Logout_Button_Click" />
     </Grid>
 </Window>
