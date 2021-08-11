@@ -105,5 +105,18 @@ namespace SaintSender.Core.Services
         {
             LoggedIn = log;
         }
+
+        public void DeleteCredentials()
+        {
+            IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+            try
+            {
+                store.DeleteFile(AUTO_LOGIN_FILE);
+            }
+            catch (IsolatedStorageException)
+            {
+                Console.WriteLine("Couldn't find file.");
+            }
+        }
     }
 }
