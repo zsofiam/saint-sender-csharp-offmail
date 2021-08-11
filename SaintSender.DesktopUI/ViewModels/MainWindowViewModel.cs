@@ -26,6 +26,11 @@ namespace SaintSender.DesktopUI.ViewModels
             _userService.SetLoggedIn(false);
         }
 
+        internal void ForgetMe()
+        {
+            _userService.DeleteCredentials();
+        }
+
         /// <summary>
         /// Gets or sets value of Greeting.
         /// </summary>

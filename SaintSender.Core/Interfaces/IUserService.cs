@@ -14,5 +14,6 @@ namespace SaintSender.Core.Interfaces
         bool AutoLogin();
         bool IsLoggedIn();
         void SetLoggedIn(bool log);
+        void DeleteCredentials();
     }
 }

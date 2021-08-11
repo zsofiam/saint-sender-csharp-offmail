@@ -49,5 +49,10 @@ namespace SaintSender.DesktopUI
             Login login = new Login(this);
             login.Show();
         }
+
+        private void Forget_Me_Button_Click(object sender, RoutedEventArgs e)
+        {
+            _vm.ForgetMe();
+        }
     }
 }
