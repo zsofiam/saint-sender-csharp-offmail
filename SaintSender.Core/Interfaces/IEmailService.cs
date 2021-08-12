@@ -10,5 +10,6 @@ namespace SaintSender.Core.Interfaces
     public interface IEmailService
     {
         IList<EmailInfo> GetEmails(string address, string password, int from, int to);
+        IList<EmailInfo> GetEmails(string address, string password, string searchTerm);
     }
 }
