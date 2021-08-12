@@ -31,7 +31,10 @@ namespace SaintSender.DesktopUI.Views
 
         private void SendVisual_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!_vm.IsValidEmail(ToVisual.Text) || (CCVisual.Text != "" && !_vm.IsValidEmail(CCVisual.Text)))
+            {
+                MessageBox.Show("One of the entered email addresses are invalid!", "Invalid email address!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void CloseVisual_Click(object sender, RoutedEventArgs e)
