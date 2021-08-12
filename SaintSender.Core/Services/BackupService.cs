@@ -1,17 +1,40 @@
 ﻿using SaintSender.Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Windows;
 
 namespace SaintSender.Core.Services
 {
     public class BackupService : IBackupService
     {
-        public void SaveBackup(string address, IList<EmailInfo> emails)
+        public bool SaveBackup(string address, IList<EmailInfo> emails)
         {
-            throw new NotImplementedException();
+            if (File.Exists(address.Split('@')[0] + ".backup")) File.Delete(address.Split('@')[0] + ".backup");
+
+            // Save as the first part of the email address: for example: hello.hello.hello.howlow@gmail.com becomes hello.hello.hello.howlow (nirvana rocks!)
+            using (StreamWriter writer = File.CreateText(address.Split('@')[0]+".backup"))
+            {
+                //try
+                //{
+                string jsonString = JsonConvert.SerializeObject(emails);
+
+                    writer.Write(jsonString);
+
+                    writer.Close();
+
+                    return true;
+                /*}
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                    return false;
+                }*/
+            }
         }
 
         public IList<EmailInfo> LoadEmails(string address)

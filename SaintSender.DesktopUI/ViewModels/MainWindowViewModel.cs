@@ -15,6 +15,7 @@ namespace SaintSender.DesktopUI.ViewModels
     {
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
+        private readonly IBackupService _backupService;
 
         private IList<EmailInfo> _emailInfos;
 
@@ -27,6 +28,7 @@ namespace SaintSender.DesktopUI.ViewModels
         {
             _userService = userService;
             _emailService = new EmailService();
+            _backupService = new BackupService();
         }
 
         internal void logout()
@@ -60,6 +62,12 @@ namespace SaintSender.DesktopUI.ViewModels
         public void SearchEmails(ListView view, string searchTerms)
         {
             view.ItemsSource = _emailService.GetEmails(_userService.GetSessionAddress(), _userService.GetSessionPassword(), searchTerms);
+        }
+
+        public bool SaveBackup()
+        {
+            if (_backupService.SaveBackup(_userService.GetSessionAddress(), _emailInfos)) return true;
+            else return false;
         }
     }
 }

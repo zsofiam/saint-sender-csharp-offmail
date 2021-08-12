@@ -118,7 +118,8 @@ namespace SaintSender.DesktopUI
 
         private void Backup_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (_vm.SaveBackup()) MessageBox.Show("Backup saved!", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
+            else MessageBox.Show("Error while saving backup!", "Backup", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SaintSender.Core.Interfaces
 {
     public interface IBackupService
     {
-        void SaveBackup(string address, IList<EmailInfo> emails);
+        bool SaveBackup(string address, IList<EmailInfo> emails);
 
         IList<EmailInfo> LoadEmails(string address);
 
