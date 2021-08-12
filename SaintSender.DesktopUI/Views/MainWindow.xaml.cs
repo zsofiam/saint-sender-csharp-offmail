@@ -55,6 +55,7 @@ namespace SaintSender.DesktopUI
                 else
                 {
                     MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                    _vm.ForgetMe();
                     Environment.Exit(0);
                 }
             }
@@ -77,6 +78,7 @@ namespace SaintSender.DesktopUI
             else
             {
                 MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                _vm.ForgetMe();
                 Environment.Exit(0);
             }
         }
@@ -86,8 +88,10 @@ namespace SaintSender.DesktopUI
             this.Visibility = Visibility.Hidden;
             _vm.logout();
             _vm.DeleteSession();
-            Login login = new Login(this, _userService);
-            login.Show();
+
+            //Login login = new Login(this, _userService);
+            //login.Show();
+            Environment.Exit(0);
         }
 
         private void Forget_Me_Button_Click(object sender, RoutedEventArgs e)
@@ -107,6 +111,7 @@ namespace SaintSender.DesktopUI
             else
             {
                 MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                _vm.ForgetMe();
                 Environment.Exit(0);
             }
         }
@@ -119,6 +124,7 @@ namespace SaintSender.DesktopUI
             else
             {
                 MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                _vm.ForgetMe();
                 Environment.Exit(0);
             }
 
@@ -136,6 +142,7 @@ namespace SaintSender.DesktopUI
             else
             {
                 MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                _vm.ForgetMe();
                 Environment.Exit(0);
             }
 
@@ -157,6 +164,7 @@ namespace SaintSender.DesktopUI
             else
             {
                 MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                _vm.ForgetMe();
                 Environment.Exit(0);
             }
         }
