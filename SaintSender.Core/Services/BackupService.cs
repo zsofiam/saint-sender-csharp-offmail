@@ -82,7 +82,6 @@ namespace SaintSender.Core.Services
                 }
             }
 
-            // only get from - to
             for (int i = 0; i < emails.Count(); i++)
             {
                 if ((emails[i].Subject != null && emails[i].Subject.Contains(searchTerm)) || (emails[i].Body != null && emails[i].Body.Contains(searchTerm)) || (emails[i].Sender != null && emails[i].Sender.Contains(searchTerm))) filteredEmails.Add(emails[i]);

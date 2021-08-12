@@ -103,6 +103,7 @@ namespace SaintSender.Core.Services
             }*/
             if (address != string.Empty && password != string.Empty)
             {
+                SaveSession(address, password);
                 return true;
             }
             else return false;
@@ -120,6 +121,11 @@ namespace SaintSender.Core.Services
                 writer.WriteLine(password);
             }
         }
+
+        /*public bool IsSessionAvailable()
+        {
+            return File.Exists(SESSION_FILE);
+        }*/
 
         public string GetSessionAddress()
         {
