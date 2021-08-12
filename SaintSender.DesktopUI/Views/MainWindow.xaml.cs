@@ -90,5 +90,19 @@ namespace SaintSender.DesktopUI
             // If page become 1 disable button
             if (_page == 1) LastVisual.IsEnabled = false;
         }
+
+        private void Search_Button_Click(object sender, RoutedEventArgs e)
+        {
+            _page++;
+            _vm.refreshEmails(EmailListVisual, _page);
+
+            // If page become 1 disable button
+            if (_page > 1) LastVisual.IsEnabled = true;
+        }
+
+        private void RemoveSearch_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
