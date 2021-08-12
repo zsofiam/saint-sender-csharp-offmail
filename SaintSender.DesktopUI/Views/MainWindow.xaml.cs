@@ -20,7 +20,6 @@ namespace SaintSender.DesktopUI
             DataContext = _vm;
             InitializeComponent();
 
-
             // Auto Login from storage
             if (_vm.AutoLogin())
             {
@@ -34,6 +33,7 @@ namespace SaintSender.DesktopUI
                 Login login = new Login(this);
                 login.Show();
             }
+            this.Visibility = Visibility.Visible;
         }
 
         private void GreetBtn_Click(object sender, RoutedEventArgs e)
