@@ -5,9 +5,6 @@ using System.Windows;
 using SaintSender.DesktopUI.Views;
 using SaintSender.Core.Services;
 using SaintSender.Core.Interfaces;
-using System.Windows.Controls;
-using System;
-using System.Windows.Input;
 
 namespace SaintSender.DesktopUI
 {
@@ -33,6 +30,7 @@ namespace SaintSender.DesktopUI
             if (_vm.AutoLogin())
             {
                 this.Visibility = Visibility.Visible;
+                EmailListVisual.SelectionChanged += EmailSelectionChanged;
             }
             // Can't login
             else
@@ -47,6 +45,12 @@ namespace SaintSender.DesktopUI
             //In case we are logged in, fetch emails
             if (userService.IsLoggedIn()) _vm.refreshEmails(EmailListVisual);
         }
+
+        private void EmailSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Console.WriteLine(sender);
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _vm.refreshEmails(EmailListVisual);
@@ -68,10 +72,6 @@ namespace SaintSender.DesktopUI
         private void RefreshVisual_Click(object sender, RoutedEventArgs e)
         {
             _vm.refreshEmails(EmailListVisual);
-            Email email = new Email();
-            email.Show();
         }
-        
-       
     }
 }
