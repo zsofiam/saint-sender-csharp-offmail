@@ -1,7 +1,9 @@
 ﻿using SaintSender.Core.Interfaces;
 using SaintSender.Core.Services;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
@@ -13,6 +15,8 @@ namespace SaintSender.DesktopUI.ViewModels
     {
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
+
+        private IList<EmailInfo> _emailInfos;
 
         /// <summary>
         /// Whenever a property value changed the subscribed event handler is called.
@@ -44,6 +48,13 @@ namespace SaintSender.DesktopUI.ViewModels
         public bool IsLoggedIn()
         {
             return _userService.IsLoggedIn();
+        }
+
+        public void refreshEmails(ListView view)
+        {
+            _emailInfos = _emailService.GetEmails("codecool.offmail@gmail.com", "Password123@", 1, 25);
+
+            view.ItemsSource = _emailInfos;
         }
     }
 }

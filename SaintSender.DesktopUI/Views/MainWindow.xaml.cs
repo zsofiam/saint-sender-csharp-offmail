@@ -39,7 +39,12 @@ namespace SaintSender.DesktopUI
                 Login login = new Login(this, userService);
                 login.Show();
             }
+
+
+            //In case we are logged in, fetch emails
+            if (userService.IsLoggedIn()) _vm.refreshEmails(EmailListVisual);
         }
+
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -52,6 +57,11 @@ namespace SaintSender.DesktopUI
         private void Forget_Me_Button_Click(object sender, RoutedEventArgs e)
         {
             _vm.ForgetMe();
+        }
+
+        private void RefreshVisual_Click(object sender, RoutedEventArgs e)
+        {
+            _vm.refreshEmails(EmailListVisual);
         }
     }
 }
