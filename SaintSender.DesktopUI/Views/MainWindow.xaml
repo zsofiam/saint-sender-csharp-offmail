@@ -11,7 +11,7 @@
         <ImageBrush ImageSource="img/inbox-bg.jpg"/>
     </Window.Background>
     <Grid>
-        <ListView x:Name="EmailListVisual" SelectedItem="SelectedSubject" HorizontalAlignment="Left" Height="604" Margin="0,66,0,0" VerticalAlignment="Top" Width="1000">
+        <ListView x:Name="EmailListVisual" MouseDoubleClick="getSelectedEmail" HorizontalAlignment="Left" Height="604" Margin="0,66,0,0" VerticalAlignment="Top" Width="1000">
             <ListView.View>
                 <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="RecievedEmails">
                     <GridViewColumn DisplayMemberBinding="{Binding Sender}" Header="Sender" Width="250"/>
