@@ -38,7 +38,23 @@ namespace SaintSender.Core.Services
 
         public IList<EmailInfo> LoadEmails(string address)
         {
-            throw new NotImplementedException();
+            IList<EmailInfo> emails;
+
+            using (StreamReader reader = new StreamReader(address.Split('@')[0] + ".backup"))
+            {
+                try
+                {
+                    string jsonString = reader.ReadToEnd();
+
+                    emails = JsonConvert.DeserializeObject<IList<EmailInfo>>(jsonString);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            return emails;
         }
 
         public void DeleteBackup(string address)
