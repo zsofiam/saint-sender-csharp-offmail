@@ -14,15 +14,16 @@ namespace SaintSender.DesktopUI
     public partial class MainWindow : Window
     {
         private MainWindowViewModel _vm;
-        private IUserService userService;
+        private IUserService _userService;
 
+        private int _page;
         public MainWindow()
         {
             //Create an user service we will use EVERYWHERE!
-            userService = new UserService();
+            _userService = new UserService();
 
             // set DataContext to the ViewModel object
-            _vm = new MainWindowViewModel(userService);
+            _vm = new MainWindowViewModel(_userService);
             DataContext = _vm;
             InitializeComponent();
 
@@ -36,24 +37,27 @@ namespace SaintSender.DesktopUI
             {
                 this.Visibility = Visibility.Hidden;
 
-                Login login = new Login(this, userService);
+                Login login = new Login(this, _userService);
                 login.Show();
             }
 
-
             //In case we are logged in, fetch emails
-            if (userService.IsLoggedIn()) _vm.refreshEmails(EmailListVisual);
+            if (_userService.IsLoggedIn()) _vm.refreshEmails(EmailListVisual, _page);
+
+
+            _page = 1;
+            LastVisual.IsEnabled = false;
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _vm.refreshEmails(EmailListVisual);
+            _vm.refreshEmails(EmailListVisual, _page);
         }
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Hidden;
             _vm.logout();
-            Login login = new Login(this, userService);
+            Login login = new Login(this, _userService);
             login.Show();
         }
 
@@ -64,7 +68,27 @@ namespace SaintSender.DesktopUI
 
         private void RefreshVisual_Click(object sender, RoutedEventArgs e)
         {
-            _vm.refreshEmails(EmailListVisual);
+            _vm.refreshEmails(EmailListVisual, _page);
+        }
+
+        private void Next_Button_Click(object sender, RoutedEventArgs e)
+        {
+            _page++;
+            _vm.refreshEmails(EmailListVisual, _page);
+
+            // If page become 1 disable button
+            if (_page > 1) LastVisual.IsEnabled = true;
+        }
+
+        private void Last_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (_page == 1) return;
+
+            _page--;
+            _vm.refreshEmails(EmailListVisual, _page);
+
+            // If page become 1 disable button
+            if (_page == 1) LastVisual.IsEnabled = false;
         }
     }
 }
