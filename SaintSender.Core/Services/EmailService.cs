@@ -9,6 +9,8 @@ using MailKit.Security;
 using MailKit;
 using System.Windows;
 using MailKit.Search;
+using MimeKit;
+using MimeKit.Text;
 
 namespace SaintSender.Core.Services
 {
@@ -82,6 +84,40 @@ namespace SaintSender.Core.Services
                 }
 
                 return emails;
+            }
+        }
+
+        public bool SendEmail(string address, string password, string from, string to, string cc, string subject, string body)
+        {
+            var messageToSend = new MimeMessage
+            {
+                Sender = new MailboxAddress(from, from),
+                Subject = subject,
+            };
+
+            messageToSend.Body = new TextPart(TextFormat.Plain) { Text = body };
+            messageToSend.To.Add(new MailboxAddress(to, to));
+            if (cc != string.Empty) messageToSend.Cc.Add(new MailboxAddress(cc, cc));
+
+            try
+            {
+                using (var smtp = new MailKit.Net.Smtp.SmtpClient())
+                {
+                    smtp.MessageSent += (sender, args) => { };
+                    smtp.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                    smtp.Connect("smtp.gmail.com", 465, SecureSocketOptions.SslOnConnect);
+
+                    smtp.Authenticate(address, password);
+                    smtp.Send(messageToSend);
+                    smtp.Disconnect(true);
+
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
     }
