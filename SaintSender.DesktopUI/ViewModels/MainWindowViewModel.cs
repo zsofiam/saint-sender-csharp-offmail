@@ -50,9 +50,9 @@ namespace SaintSender.DesktopUI.ViewModels
             return _userService.IsLoggedIn();
         }
 
-        public void refreshEmails(ListView view)
+        public void refreshEmails(ListView view, int page)
         {
-            _emailInfos = _emailService.GetEmails(_userService.GetSessionAddress(), _userService.GetSessionPassword(), 1, 25);
+            _emailInfos = _emailService.GetEmails(_userService.GetSessionAddress(), _userService.GetSessionPassword(), (page*25)-24, page*25);
 
             view.ItemsSource = _emailInfos;
         }
