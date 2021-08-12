@@ -187,9 +187,17 @@ namespace SaintSender.DesktopUI
 
         private void getSelectedEmail(object sender, MouseButtonEventArgs e)
         {
+            if (EmailListVisual.SelectedItems.Count == 0) return;
+
             EmailInfo emailinfo = (EmailInfo)EmailListVisual.SelectedItems[0];
             Email email = new Email(emailinfo);
             email.Show();
+        }
+
+        private void SendEmailVisual_Click(object sender, RoutedEventArgs e)
+        {
+            EmailSender emailSender = new EmailSender();
+            emailSender.Show();
         }
     }
 }

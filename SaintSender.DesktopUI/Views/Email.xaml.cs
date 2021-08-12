@@ -37,7 +37,7 @@ namespace SaintSender.DesktopUI.Views
 
         private void Send_Reply_Button_Click(object sender, RoutedEventArgs e)
         {
-            _vm.SendReply();
+            _vm.SendReply(ReplyText.Text);
             Close();
         }
     }

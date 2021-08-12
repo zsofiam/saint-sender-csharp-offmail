@@ -11,5 +11,6 @@ namespace SaintSender.Core.Interfaces
     {
         IList<EmailInfo> GetEmails(string address, string password, int from, int to);
         IList<EmailInfo> GetEmails(string address, string password, string searchTerm);
+        bool SendEmail(string address, string password, string from, string to, string cc, string subject, string body);
     }
 }
