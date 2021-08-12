@@ -14,7 +14,7 @@ namespace SaintSender.Core.Services
     {
         public bool SaveBackup(string address, IList<EmailInfo> emails)
         {
-            if (File.Exists(address.Split('@')[0] + ".backup")) File.Delete(address.Split('@')[0] + ".backup");
+            DeleteBackup(address);
 
             // Save as the first part of the email address: for example: hello.hello.hello.howlow@gmail.com becomes hello.hello.hello.howlow (nirvana rocks!)
             using (StreamWriter writer = File.CreateText(address.Split('@')[0]+".backup"))
@@ -59,7 +59,7 @@ namespace SaintSender.Core.Services
 
         public void DeleteBackup(string address)
         {
-            throw new NotImplementedException();
+            if (File.Exists(address.Split('@')[0] + ".backup")) File.Delete(address.Split('@')[0] + ".backup");
         }
     }
 }
