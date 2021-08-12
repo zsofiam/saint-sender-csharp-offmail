@@ -14,10 +14,10 @@
         <ListView x:Name="EmailListVisual" HorizontalAlignment="Left" Height="604" Margin="0,66,0,0" VerticalAlignment="Top" Width="1000">
             <ListView.View>
                 <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="RecievedEmails">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=_sender}" Header="Sender" Width="250"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=_recieved}" Header="Date" Width="130"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=_subject}" Header="Subject" Width="500"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=_read}" Header="Read/Unread" Width="120"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Sender}" Header="Sender" Width="250"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Received}" Header="Date" Width="130"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Subject}" Header="Subject" Width="500"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Read}" Header="Read/Unread" Width="120"/>
                 </GridView>
             </ListView.View>
         </ListView>
