@@ -11,29 +11,29 @@
         <ImageBrush ImageSource="img/inbox-bg.jpg"/>
     </Window.Background>
     <Grid>
-        <ListView x:Name="EmailListVisual" MouseDoubleClick="getSelectedEmail" HorizontalAlignment="Left" Height="604" Margin="0,66,0,0" VerticalAlignment="Top" Width="1000">
+        <ListView x:Name="EmailListVisual" MouseDoubleClick="getSelectedEmail" HorizontalAlignment="Left" Height="604" Margin="0,66,-0.4,0" VerticalAlignment="Top" Width="1194">
             <ListView.View>
                 <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="RecievedEmails">
-                    <GridViewColumn DisplayMemberBinding="{Binding Sender}" Header="Sender" Width="250"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Received}" Header="Date" Width="130"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Subject}" Header="Subject" Width="500"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Read}" Header="Read/Unread" Width="120"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Sender}" Header="Sender" Width="260"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Received}" Header="Date" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Subject}" Header="Subject" Width="620"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Read}" Header="Read/Unread" Width="150"/>
                 </GridView>
             </ListView.View>
-           
+
         </ListView>
 
-        <Button Content="Logout" HorizontalAlignment="Left" Height="20" Margin="1080,18,0,0" VerticalAlignment="Top" Width="55" Click="Logout_Button_Click" RenderTransformOrigin="7.004,0.61" />
-        <Button Content="Forget me" HorizontalAlignment="Left" Margin="980,18,0,0" VerticalAlignment="Top" Width="75" Click="Forget_Me_Button_Click" Height="20"/>
-        <Button x:Name="RefreshVisual" Content="Refresh" HorizontalAlignment="Left" Margin="1049,144,0,0" VerticalAlignment="Top" Width="75" Height="20" Click="RefreshVisual_Click"/>
-        <Button x:Name="NextVisual" Content="Next" HorizontalAlignment="Left" Margin="1109,641,0,0" VerticalAlignment="Top" Width="75" Click="Next_Button_Click"/>
-        <Button x:Name="LastVisual" Content="Last" HorizontalAlignment="Left" Margin="1020,641,0,0" VerticalAlignment="Top" Width="75" Click="Last_Button_Click"/>
-        
-        <TextBox x:Name="SearchTextVisual" HorizontalAlignment="Left" Height="23" Margin="10,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="310"/>
-        <Button x:Name="SearchVisual" Content="Search" HorizontalAlignment="Left" Margin="359,24,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Search_Button_Click"/>
-        <Button x:Name="RemoveSearchVisual" Content="X" HorizontalAlignment="Left" Margin="325,24,0,0" VerticalAlignment="Top" Width="29" Height="23" Click="RemoveSearch_Button_Click"/>
-        <Button x:Name="BackupVisual" Content="Backup" HorizontalAlignment="Left" Margin="1049,119,0,0" VerticalAlignment="Top" Width="75" Height="20" Click="Backup_Button_Click"/>
-        <Button x:Name="SendEmailVisual" Content="New Email" HorizontalAlignment="Left" Margin="1049,169,0,0" VerticalAlignment="Top" Width="75" Click="SendEmailVisual_Click"/>
+        <Button x:Name="LogOutVisual" Content="&#xF3B1;" HorizontalAlignment="Left" Margin="1129,24,0,0" VerticalAlignment="Top" Width="55" Click="Logout_Button_Click" RenderTransformOrigin="7.004,0.61" FontFamily="Segoe MDL2 Assets" Height="23" />
+        <Button x:Name="ForgetMeVisual" Content="Forget me" HorizontalAlignment="Left" Margin="1056,24,0,0" VerticalAlignment="Top" Width="68" Click="Forget_Me_Button_Click" Height="23"/>
+        <Button x:Name="RefreshVisual" Content="&#xE72C;" HorizontalAlignment="Left" Margin="40,24,0,0" VerticalAlignment="Top" Width="25" Click="RefreshVisual_Click" FontFamily="Segoe MDL2 Assets" Height="23"/>
+        <Button x:Name="NextVisual" Content="&#xE76C;" HorizontalAlignment="Left" Margin="970,24,0,0" VerticalAlignment="Top" Width="25" Click="Next_Button_Click" FontFamily="Segoe MDL2 Assets" Height="23"/>
+        <Button x:Name="LastVisual" Content="&#xE76B;" HorizontalAlignment="Left" Margin="940,24,0,0" VerticalAlignment="Top" Width="25" Click="Last_Button_Click" FontFamily="Segoe MDL2 Assets" Height="23"/>
+
+        <TextBox x:Name="SearchTextVisual" HorizontalAlignment="Left" Height="23" Margin="74,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="779"/>
+        <Button x:Name="SearchVisual" Content="&#xE721;" HorizontalAlignment="Left" Margin="888,24,0,0" VerticalAlignment="Top" Width="25" Height="23" Click="Search_Button_Click" FontFamily="Segoe MDL2 Assets"/>
+        <Button x:Name="RemoveSearchVisual" Content="&#xE8BB;" HorizontalAlignment="Left" Margin="858,24,0,0" VerticalAlignment="Top" Width="25" Height="23" Click="RemoveSearch_Button_Click" FontFamily="Segoe MDL2 Assets"/>
+        <Button x:Name="BackupVisual" Content="&#xE78C;" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Width="25" Height="24" Click="Backup_Button_Click" FontFamily="Segoe MDL2 Assets"/>
+        <Button x:Name="SendEmailVisual" Content="&#xE70F;" HorizontalAlignment="Left" Margin="1023,24,0,0" VerticalAlignment="Top" Width="25" Click="SendEmailVisual_Click" Height="23" FontFamily="Segoe MDL2 Assets"/>
 
 
     </Grid>

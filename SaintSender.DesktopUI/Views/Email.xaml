@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="Email" Height="450" Width="800">
+        Title="Email" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Sender:" HorizontalAlignment="Left" Height="25" Margin="25,10,0,0" VerticalAlignment="Top" Width="65"/>
         <TextBox HorizontalAlignment="Left" Height="58" Margin="90,12,0,0" TextWrapping="Wrap" Text="{Binding Sender}" VerticalAlignment="Top" Width="190" IsReadOnly="True" VerticalScrollBarVisibility="Auto" />
