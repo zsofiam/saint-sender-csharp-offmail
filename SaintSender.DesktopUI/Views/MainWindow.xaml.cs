@@ -5,6 +5,9 @@ using System.Windows;
 using SaintSender.DesktopUI.Views;
 using SaintSender.Core.Services;
 using SaintSender.Core.Interfaces;
+using System.Windows.Controls;
+using System;
+using System.Windows.Input;
 
 namespace SaintSender.DesktopUI
 {
@@ -65,6 +68,10 @@ namespace SaintSender.DesktopUI
         private void RefreshVisual_Click(object sender, RoutedEventArgs e)
         {
             _vm.refreshEmails(EmailListVisual);
+            Email email = new Email();
+            email.Show();
         }
+        
+       
     }
 }
