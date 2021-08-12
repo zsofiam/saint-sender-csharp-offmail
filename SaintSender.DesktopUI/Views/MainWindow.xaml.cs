@@ -191,5 +191,11 @@ namespace SaintSender.DesktopUI
             Email email = new Email(emailinfo);
             email.Show();
         }
+
+        private void SendEmailVisual_Click(object sender, RoutedEventArgs e)
+        {
+            EmailSender emailSender = new EmailSender();
+            emailSender.Show();
+        }
     }
 }
