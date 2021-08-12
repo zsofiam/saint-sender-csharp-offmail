@@ -6,6 +6,7 @@ using SaintSender.DesktopUI.Views;
 using SaintSender.Core.Services;
 using SaintSender.Core.Interfaces;
 using System.Windows.Input;
+using System;
 
 namespace SaintSender.DesktopUI
 {
@@ -32,7 +33,6 @@ namespace SaintSender.DesktopUI
             if (_vm.AutoLogin())
             {
                 this.Visibility = Visibility.Visible;
-                
             }
             // Can't login
             else
@@ -44,9 +44,20 @@ namespace SaintSender.DesktopUI
             }
 
             //In case we are logged in, fetch emails
-            if (_userService.IsLoggedIn()) _vm.RefreshEmails(EmailListVisual, _page);
-
-
+            if (_userService.IsLoggedIn())
+            {
+                if (_vm.IsOnline()) _vm.RefreshEmails(EmailListVisual, _page);
+                else if (_vm.BackupExists())
+                {
+                    MessageBoxResult result = MessageBox.Show("You are offline, but we can load your offline backup. Would you like us to?", "Offline backup", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes) _vm.LoadBackupEmails(EmailListVisual, _page);
+                }
+                else
+                {
+                    MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Environment.Exit(0);
+                }
+            }
 
             // Events
             SearchTextVisual.KeyDown += new KeyEventHandler(Search_Key);
@@ -58,31 +69,59 @@ namespace SaintSender.DesktopUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _vm.RefreshEmails(EmailListVisual, _page);
+            if (_vm.IsOnline()) _vm.RefreshEmails(EmailListVisual, _page);
+            else if (_vm.BackupExists())
+            {
+                MessageBoxResult result = MessageBox.Show("You are offline, but we can load your offline backup. Would you like us to?", "Offline backup", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes) _vm.LoadBackupEmails(EmailListVisual, _page);
+            }
+            else
+            {
+                MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
+            }
         }
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Hidden;
             _vm.logout();
+            _vm.DeleteSession();
             Login login = new Login(this, _userService);
             login.Show();
         }
 
         private void Forget_Me_Button_Click(object sender, RoutedEventArgs e)
         {
+            _vm.DeleteBackup();
             _vm.ForgetMe();
         }
 
         private void RefreshVisual_Click(object sender, RoutedEventArgs e)
         {
-            _vm.RefreshEmails(EmailListVisual, _page);
+            if (_vm.IsOnline()) _vm.RefreshEmails(EmailListVisual, _page);
+            else if (_vm.BackupExists())
+            {
+                MessageBoxResult result = MessageBox.Show("You are offline, but we can load your offline backup. Would you like us to?", "Offline backup", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes) _vm.LoadBackupEmails(EmailListVisual, _page);
+            }
+            else
+            {
+                MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
+            }
         }
 
         private void Next_Button_Click(object sender, RoutedEventArgs e)
         {
             _page++;
-            _vm.RefreshEmails(EmailListVisual, _page);
+            if (_vm.IsOnline()) _vm.RefreshEmails(EmailListVisual, _page);
+            else if (_vm.BackupExists()) _vm.LoadBackupEmails(EmailListVisual, _page);
+            else
+            {
+                MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
+            }
 
             // If page become 1 disable button
             if (_page > 1) LastVisual.IsEnabled = true;
@@ -93,7 +132,13 @@ namespace SaintSender.DesktopUI
             if (_page == 1) return;
 
             _page--;
-            _vm.RefreshEmails(EmailListVisual, _page);
+            if (_vm.IsOnline()) _vm.RefreshEmails(EmailListVisual, _page);
+            else if (_vm.BackupExists()) _vm.LoadBackupEmails(EmailListVisual, _page);
+            else
+            {
+                MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
+            }
 
             // If page become 1 disable button
             if (_page == 1) LastVisual.IsEnabled = false;
@@ -101,21 +146,35 @@ namespace SaintSender.DesktopUI
 
         private void Search_Button_Click(object sender, RoutedEventArgs e)
         {
-            _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+            if (_vm.IsOnline()) _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+            else _vm.SearchOfflineEmails(EmailListVisual, SearchTextVisual.Text);
         }
 
         private void RemoveSearch_Button_Click(object sender, RoutedEventArgs e)
         {
             SearchTextVisual.Text = "";
-            _vm.RefreshEmails(EmailListVisual, _page);
+            if (_vm.IsOnline()) _vm.RefreshEmails(EmailListVisual, _page);
+            else if (_vm.BackupExists()) _vm.LoadBackupEmails(EmailListVisual, _page);
+            else
+            {
+                MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
+            }
         }
 
         private void Search_Key(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+                if (_vm.IsOnline()) _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+                else _vm.SearchOfflineEmails(EmailListVisual, SearchTextVisual.Text);
             }
+        }
+
+        private void Backup_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (_vm.SaveBackup()) MessageBox.Show("Backup saved!", "Backup", MessageBoxButton.OK, MessageBoxImage.Information);
+            else MessageBox.Show("Error while saving backup!", "Backup", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void getSelectedEmail(object sender, MouseButtonEventArgs e)

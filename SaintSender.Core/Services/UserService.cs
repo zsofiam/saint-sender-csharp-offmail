@@ -60,10 +60,11 @@ namespace SaintSender.Core.Services
         // If the user checks auto login, save the credentials
         public void SaveCredentials(string address, string password)
         {
-            IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+            /*IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
 
             using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(AUTO_LOGIN_FILE, FileMode.Create, store))
-            using (StreamWriter writer = new StreamWriter(stream))
+            using (StreamWriter writer = new StreamWriter(stream))*/
+            using (StreamWriter writer = new StreamWriter(AUTO_LOGIN_FILE))
             {
                 writer.WriteLine(address);
                 // HEADS UP: YOU SHOULD HASH THIS
@@ -77,12 +78,13 @@ namespace SaintSender.Core.Services
             string address = string.Empty;
             string password = string.Empty;
 
-            IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+            //IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
 
             try
             {
-                using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(AUTO_LOGIN_FILE, FileMode.Create, store))
-                using (StreamReader reader = new StreamReader(stream))
+                //using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(AUTO_LOGIN_FILE, FileMode.Create, store))
+                //using (StreamReader reader = new StreamReader(stream))
+                using (StreamReader reader = new StreamReader(AUTO_LOGIN_FILE))
                 {
                     address = reader.ReadLine();
                     // HEADS UP: YOU SHOULD HASH THIS
@@ -94,7 +96,12 @@ namespace SaintSender.Core.Services
                 return false;
             }
 
-            if (CanAuthenticate(address, password))
+            /*if (CanAuthenticate(address, password))
+            {
+                SaveSession(address, password);
+                return true;
+            }*/
+            if (address != string.Empty && password != string.Empty)
             {
                 SaveSession(address, password);
                 return true;
@@ -115,6 +122,11 @@ namespace SaintSender.Core.Services
             }
         }
 
+        /*public bool IsSessionAvailable()
+        {
+            return File.Exists(SESSION_FILE);
+        }*/
+
         public string GetSessionAddress()
         {
             string address = string.Empty;
@@ -129,9 +141,9 @@ namespace SaintSender.Core.Services
                     address = reader.ReadLine();
                 }
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.ToString());
+                return "";
             }
 
             return address;
@@ -187,10 +199,11 @@ namespace SaintSender.Core.Services
 
         public void DeleteCredentials()
         {
-            IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+            //IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
             try
             {
-                store.DeleteFile(AUTO_LOGIN_FILE);
+                //store.DeleteFile(AUTO_LOGIN_FILE);
+                File.Delete(AUTO_LOGIN_FILE);
             }
             catch (IsolatedStorageException)
             {
