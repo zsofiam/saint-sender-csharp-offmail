@@ -8,9 +8,9 @@
         Title="Email" Height="450" Width="800">
     <Grid>
         <Label Content="Sender:" HorizontalAlignment="Left" Height="25" Margin="25,10,0,0" VerticalAlignment="Top" Width="65"/>
-        <TextBox HorizontalAlignment="Left" Height="58" Margin="90,12,0,0" TextWrapping="Wrap" Text="{Binding Sender}" VerticalAlignment="Top" Width="190" IsReadOnly="True" />
+        <TextBox HorizontalAlignment="Left" Height="58" Margin="90,12,0,0" TextWrapping="Wrap" Text="{Binding Sender}" VerticalAlignment="Top" Width="190" IsReadOnly="True" VerticalScrollBarVisibility="Auto" />
         <Label Content="Date: " HorizontalAlignment="Left" Height="23" Margin="290,12,0,0" VerticalAlignment="Top" Width="65"/>
-        <TextBox HorizontalAlignment="Left" Height="25" Margin="355,10,0,0" TextWrapping="Wrap" Text="{Binding Received}" VerticalAlignment="Top" Width="170" IsReadOnly="True" />
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="355,10,0,0" TextWrapping="Wrap" Text="{Binding Received}" VerticalAlignment="Top" Width="170" IsReadOnly="True" VerticalScrollBarVisibility="Auto" />
         <Label Content="Subject: " HorizontalAlignment="Left" Height="30" Margin="285,40,0,0" VerticalAlignment="Top" Width="65"/>
         <TextBox HorizontalAlignment="Left" Height="30" Margin="355,40,0,0" TextWrapping="Wrap" Text="{Binding Subject}" VerticalAlignment="Top" Width="400" IsReadOnly="True" />
         <TextBox HorizontalAlignment="Left" Height="125" Margin="25,90,0,0" TextWrapping="Wrap" Text="{Binding Body}" VerticalAlignment="Top" Width="730" IsReadOnly="True" VerticalScrollBarVisibility="Auto" />

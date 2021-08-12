@@ -118,7 +118,7 @@ namespace SaintSender.DesktopUI
             }
         }
 
-        private void getSelectedEmail(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void getSelectedEmail(object sender, MouseButtonEventArgs e)
         {
             EmailInfo emailinfo = (EmailInfo)EmailListVisual.SelectedItems[0];
             Email email = new Email(emailinfo);

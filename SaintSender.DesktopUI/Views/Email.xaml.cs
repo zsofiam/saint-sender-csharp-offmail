@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SaintSender.Core.Services;
 
 namespace SaintSender.DesktopUI.Views
 {
@@ -21,11 +22,11 @@ namespace SaintSender.DesktopUI.Views
     public partial class Email : Window
     {
         private EmailViewModel _vm;
-        public Email(Core.Services.EmailInfo emailinfo)
+        public Email(EmailInfo emailinfo)
         {
             _vm = new EmailViewModel(emailinfo);
-            InitializeComponent();
             DataContext = emailinfo;
+            InitializeComponent();
         }
 
         private void Reply_Button_Click(object sender, RoutedEventArgs e)
