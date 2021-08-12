@@ -29,5 +29,10 @@ namespace SaintSender.DesktopUI.Views
             ReplyText.Visibility = Visibility.Visible;
             ReplyButton.Visibility = Visibility.Visible;
         }
+
+        private void Send_Reply_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
