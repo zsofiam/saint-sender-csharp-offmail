@@ -30,9 +30,9 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public LoginViewModel()
+        public LoginViewModel(IUserService userService)
         {
-            _userService = new UserService();
+            _userService = userService;
             _enviromentService = new EnviromentService();
         }
 

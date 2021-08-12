@@ -1,4 +1,5 @@
-﻿using SaintSender.DesktopUI.ViewModels;
+﻿using SaintSender.Core.Interfaces;
+using SaintSender.DesktopUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,9 @@ namespace SaintSender.DesktopUI.Views
         private LoginViewModel _vm;
         private Window MainWindow;
 
-        public Login(Window main)
+        public Login(Window main, IUserService userService)
         {
-            _vm = new LoginViewModel();
+            _vm = new LoginViewModel(userService);
             DataContext = _vm;
 
             MainWindow = main;

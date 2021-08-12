@@ -3,6 +3,8 @@ using System.Windows;
 
 //Debug for the login
 using SaintSender.DesktopUI.Views;
+using SaintSender.Core.Services;
+using SaintSender.Core.Interfaces;
 
 namespace SaintSender.DesktopUI
 {
@@ -12,11 +14,15 @@ namespace SaintSender.DesktopUI
     public partial class MainWindow : Window
     {
         private MainWindowViewModel _vm;
+        private IUserService userService;
 
         public MainWindow()
         {
+            //Create an user service we will use EVERYWHERE!
+            userService = new UserService();
+
             // set DataContext to the ViewModel object
-            _vm = new MainWindowViewModel();
+            _vm = new MainWindowViewModel(userService);
             DataContext = _vm;
             InitializeComponent();
 
@@ -30,7 +36,7 @@ namespace SaintSender.DesktopUI
             {
                 this.Visibility = Visibility.Hidden;
 
-                Login login = new Login(this);
+                Login login = new Login(this, userService);
                 login.Show();
             }
             this.Visibility = Visibility.Visible;
@@ -46,7 +52,7 @@ namespace SaintSender.DesktopUI
         {
             this.Visibility = Visibility.Hidden;
             _vm.logout();
-            Login login = new Login(this);
+            Login login = new Login(this, userService);
             login.Show();
         }
 

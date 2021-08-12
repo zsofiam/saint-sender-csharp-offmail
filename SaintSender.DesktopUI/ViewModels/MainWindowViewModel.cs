@@ -18,9 +18,9 @@ namespace SaintSender.DesktopUI.ViewModels
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IUserService userService)
         {
-            _userService = new UserService();
+            _userService = userService;
         }
 
         internal void logout()
