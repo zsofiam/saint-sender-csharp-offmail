@@ -103,6 +103,7 @@ namespace SaintSender.Core.Services
             }*/
             if (address != string.Empty && password != string.Empty)
             {
+                SaveSession(address, password);
                 return true;
             }
             else return false;
@@ -121,6 +122,11 @@ namespace SaintSender.Core.Services
             }
         }
 
+        /*public bool IsSessionAvailable()
+        {
+            return File.Exists(SESSION_FILE);
+        }*/
+
         public string GetSessionAddress()
         {
             string address = string.Empty;
@@ -135,9 +141,9 @@ namespace SaintSender.Core.Services
                     address = reader.ReadLine();
                 }
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.ToString());
+                return "";
             }
 
             return address;

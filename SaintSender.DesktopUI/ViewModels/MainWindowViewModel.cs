@@ -15,6 +15,8 @@ namespace SaintSender.DesktopUI.ViewModels
     {
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
+        private readonly IBackupService _backupService;
+        private readonly IEnviromentService _enviromentService;
 
         private IList<EmailInfo> _emailInfos;
 
@@ -27,6 +29,8 @@ namespace SaintSender.DesktopUI.ViewModels
         {
             _userService = userService;
             _emailService = new EmailService();
+            _backupService = new BackupService();
+            _enviromentService = new EnviromentService();
         }
 
         internal void logout()
@@ -45,9 +49,31 @@ namespace SaintSender.DesktopUI.ViewModels
             return _userService.AutoLogin();
         }
 
+        public void DeleteSession()
+        {
+            _userService.DeleteSession();
+        }
+
         public bool IsLoggedIn()
         {
             return _userService.IsLoggedIn();
+        }
+
+        public bool IsOnline()
+        {
+            return _enviromentService.IsOnline();
+        }
+
+        public void LoadBackupEmails(ListView view, int page)
+        {
+            _emailInfos = _backupService.LoadEmails(_userService.GetSessionAddress(), (page * 25) - 24, page * 25);
+
+            view.ItemsSource = _emailInfos;
+        }
+
+        public void DeleteBackup()
+        {
+            _backupService.DeleteBackup(_userService.GetSessionAddress());
         }
 
         public void RefreshEmails(ListView view, int page)
@@ -60,6 +86,21 @@ namespace SaintSender.DesktopUI.ViewModels
         public void SearchEmails(ListView view, string searchTerms)
         {
             view.ItemsSource = _emailService.GetEmails(_userService.GetSessionAddress(), _userService.GetSessionPassword(), searchTerms);
+        }
+        public void SearchOfflineEmails(ListView view, string searchTerms)
+        {
+            view.ItemsSource = _backupService.SearchEmails(_userService.GetSessionAddress(), searchTerms);
+        }
+
+        public bool SaveBackup()
+        {
+            if (_backupService.SaveBackup(_userService.GetSessionAddress(), _emailInfos)) return true;
+            else return false;
+        }
+
+        public bool BackupExists()
+        {
+            return _backupService.BackupExitsts(_userService.GetSessionAddress());
         }
     }
 }

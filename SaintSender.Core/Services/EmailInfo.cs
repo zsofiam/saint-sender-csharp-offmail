@@ -44,6 +44,15 @@ namespace SaintSender.Core.Services
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Subject)));
             }
         }
+        public String Body
+        {
+            get { return _body; }
+            set
+            {
+                _body = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Body)));
+            }
+        }
         public bool Read
         {
             get { return _read; }

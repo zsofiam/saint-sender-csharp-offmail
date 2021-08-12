@@ -31,6 +31,7 @@
         <TextBox x:Name="SearchTextVisual" HorizontalAlignment="Left" Height="23" Margin="10,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="310"/>
         <Button x:Name="SearchVisual" Content="Search" HorizontalAlignment="Left" Margin="359,24,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Search_Button_Click"/>
         <Button x:Name="RemoveSearchVisual" Content="X" HorizontalAlignment="Left" Margin="325,24,0,0" VerticalAlignment="Top" Width="29" Height="23" Click="RemoveSearch_Button_Click"/>
+        <Button x:Name="BackupVisual" Content="Backup" HorizontalAlignment="Left" Margin="1049,119,0,0" VerticalAlignment="Top" Width="75" Height="20" Click="Backup_Button_Click"/>
 
 
     </Grid>

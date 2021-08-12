@@ -13,6 +13,7 @@ namespace SaintSender.Core.Interfaces
         void SaveCredentials(string address, string password);
         bool AutoLogin();
         void SaveSession(string address, string password);
+        //bool IsSessionAvailable();
         string GetSessionAddress();
         string GetSessionPassword();
         void DeleteSession();
