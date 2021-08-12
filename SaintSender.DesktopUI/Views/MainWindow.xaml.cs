@@ -5,6 +5,7 @@ using System.Windows;
 using SaintSender.DesktopUI.Views;
 using SaintSender.Core.Services;
 using SaintSender.Core.Interfaces;
+using System.Windows.Input;
 
 namespace SaintSender.DesktopUI
 {
@@ -43,16 +44,21 @@ namespace SaintSender.DesktopUI
             }
 
             //In case we are logged in, fetch emails
-            if (_userService.IsLoggedIn()) _vm.refreshEmails(EmailListVisual, _page);
+            if (_userService.IsLoggedIn()) _vm.RefreshEmails(EmailListVisual, _page);
 
 
+
+            // Events
+            SearchTextVisual.KeyDown += new KeyEventHandler(Search_Key);
+
+            // Assigns
             _page = 1;
             LastVisual.IsEnabled = false;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _vm.refreshEmails(EmailListVisual, _page);
+            _vm.RefreshEmails(EmailListVisual, _page);
         }
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
@@ -70,13 +76,13 @@ namespace SaintSender.DesktopUI
 
         private void RefreshVisual_Click(object sender, RoutedEventArgs e)
         {
-            _vm.refreshEmails(EmailListVisual, _page);
+            _vm.RefreshEmails(EmailListVisual, _page);
         }
 
         private void Next_Button_Click(object sender, RoutedEventArgs e)
         {
             _page++;
-            _vm.refreshEmails(EmailListVisual, _page);
+            _vm.RefreshEmails(EmailListVisual, _page);
 
             // If page become 1 disable button
             if (_page > 1) LastVisual.IsEnabled = true;
@@ -87,10 +93,29 @@ namespace SaintSender.DesktopUI
             if (_page == 1) return;
 
             _page--;
-            _vm.refreshEmails(EmailListVisual, _page);
+            _vm.RefreshEmails(EmailListVisual, _page);
 
             // If page become 1 disable button
             if (_page == 1) LastVisual.IsEnabled = false;
+        }
+
+        private void Search_Button_Click(object sender, RoutedEventArgs e)
+        {
+            _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+        }
+
+        private void RemoveSearch_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SearchTextVisual.Text = "";
+            _vm.RefreshEmails(EmailListVisual, _page);
+        }
+
+        private void Search_Key(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+            }
         }
 
         private void getSelectedEmail(object sender, System.Windows.Input.MouseButtonEventArgs e)
