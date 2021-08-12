@@ -27,12 +27,12 @@ namespace SaintSender.DesktopUI.ViewModels
         {
             _userService = userService;
             _emailService = new EmailService();
-            _emailService.GetEmails("codecool.offmail@gmail.com", "Password123@", 1, 25);
         }
 
         internal void logout()
         {
             _userService.SetLoggedIn(false);
+            _userService.DeleteSession();
         }
 
         internal void ForgetMe()
@@ -52,7 +52,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public void refreshEmails(ListView view)
         {
-            _emailInfos = _emailService.GetEmails("codecool.offmail@gmail.com", "Password123@", 1, 25);
+            _emailInfos = _emailService.GetEmails(_userService.GetSessionAddress(), _userService.GetSessionPassword(), 1, 25);
 
             view.ItemsSource = _emailInfos;
         }
