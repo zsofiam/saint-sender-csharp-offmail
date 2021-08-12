@@ -141,9 +141,9 @@ namespace SaintSender.Core.Services
                     address = reader.ReadLine();
                 }
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.ToString());
+                return "";
             }
 
             return address;

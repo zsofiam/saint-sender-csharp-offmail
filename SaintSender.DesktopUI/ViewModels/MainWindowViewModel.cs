@@ -49,6 +49,11 @@ namespace SaintSender.DesktopUI.ViewModels
             return _userService.AutoLogin();
         }
 
+        public void DeleteSession()
+        {
+            _userService.DeleteSession();
+        }
+
         public bool IsLoggedIn()
         {
             return _userService.IsLoggedIn();
@@ -64,6 +69,11 @@ namespace SaintSender.DesktopUI.ViewModels
             _emailInfos = _backupService.LoadEmails(_userService.GetSessionAddress(), (page * 25) - 24, page * 25);
 
             view.ItemsSource = _emailInfos;
+        }
+
+        public void DeleteBackup()
+        {
+            _backupService.DeleteBackup(_userService.GetSessionAddress());
         }
 
         public void RefreshEmails(ListView view, int page)

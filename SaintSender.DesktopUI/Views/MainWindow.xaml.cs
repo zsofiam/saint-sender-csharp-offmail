@@ -85,12 +85,14 @@ namespace SaintSender.DesktopUI
         {
             this.Visibility = Visibility.Hidden;
             _vm.logout();
+            _vm.DeleteSession();
             Login login = new Login(this, _userService);
             login.Show();
         }
 
         private void Forget_Me_Button_Click(object sender, RoutedEventArgs e)
         {
+            _vm.DeleteBackup();
             _vm.ForgetMe();
         }
 
