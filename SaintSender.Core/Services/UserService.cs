@@ -96,9 +96,13 @@ namespace SaintSender.Core.Services
                 return false;
             }
 
-            if (CanAuthenticate(address, password))
+            /*if (CanAuthenticate(address, password))
             {
                 SaveSession(address, password);
+                return true;
+            }*/
+            if (address != string.Empty && password != string.Empty)
+            {
                 return true;
             }
             else return false;
