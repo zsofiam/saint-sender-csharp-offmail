@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SaintSender.DesktopUI"
         mc:Ignorable="d"
         Title="Offmail - Inbox"
-        Height="700" Width="1200" WindowStartupLocation="CenterScreen">
+        Height="700" Width="1200" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Background>
         <ImageBrush ImageSource="img/inbox-bg.jpg"/>
     </Window.Background>

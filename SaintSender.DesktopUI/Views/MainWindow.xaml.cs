@@ -44,7 +44,10 @@ namespace SaintSender.DesktopUI
             //In case we are logged in, fetch emails
             if (userService.IsLoggedIn()) _vm.refreshEmails(EmailListVisual);
         }
-
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _vm.refreshEmails(EmailListVisual);
+        }
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
