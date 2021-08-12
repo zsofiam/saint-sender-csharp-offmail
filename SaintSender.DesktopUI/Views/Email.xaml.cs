@@ -21,11 +21,11 @@ namespace SaintSender.DesktopUI.Views
     public partial class Email : Window
     {
         private EmailViewModel _vm;
-        public Email()
+        public Email(Core.Services.EmailInfo emailinfo)
         {
-            _vm = new EmailViewModel();
-            DataContext = _vm;
+            _vm = new EmailViewModel(emailinfo);
             InitializeComponent();
+            DataContext = emailinfo;
         }
 
         private void Reply_Button_Click(object sender, RoutedEventArgs e)

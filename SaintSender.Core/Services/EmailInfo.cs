@@ -54,6 +54,13 @@ namespace SaintSender.Core.Services
             }
         }
 
+        public string Body
+        {
+            get { return _body; }
+            set { _body = value; }
+        }
+
+
         public EmailInfo(string sender, DateTime received, string subject, string body, bool read)
         {
             _sender = sender;
