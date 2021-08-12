@@ -5,6 +5,7 @@ using System.Windows;
 using SaintSender.DesktopUI.Views;
 using SaintSender.Core.Services;
 using SaintSender.Core.Interfaces;
+using System.Windows.Input;
 
 namespace SaintSender.DesktopUI
 {
@@ -45,6 +46,11 @@ namespace SaintSender.DesktopUI
             if (_userService.IsLoggedIn()) _vm.RefreshEmails(EmailListVisual, _page);
 
 
+
+            // Events
+            SearchTextVisual.KeyDown += new KeyEventHandler(Search_Key);
+
+            // Assigns
             _page = 1;
             LastVisual.IsEnabled = false;
         }
@@ -100,6 +106,14 @@ namespace SaintSender.DesktopUI
         {
             SearchTextVisual.Text = "";
             _vm.RefreshEmails(EmailListVisual, _page);
+        }
+
+        private void Search_Key(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+            }
         }
     }
 }
