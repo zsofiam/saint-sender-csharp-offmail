@@ -42,7 +42,7 @@ namespace SaintSender.DesktopUI
             }
 
             //In case we are logged in, fetch emails
-            if (_userService.IsLoggedIn()) _vm.refreshEmails(EmailListVisual, _page);
+            if (_userService.IsLoggedIn()) _vm.RefreshEmails(EmailListVisual, _page);
 
 
             _page = 1;
@@ -50,7 +50,7 @@ namespace SaintSender.DesktopUI
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _vm.refreshEmails(EmailListVisual, _page);
+            _vm.RefreshEmails(EmailListVisual, _page);
         }
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
@@ -68,13 +68,13 @@ namespace SaintSender.DesktopUI
 
         private void RefreshVisual_Click(object sender, RoutedEventArgs e)
         {
-            _vm.refreshEmails(EmailListVisual, _page);
+            _vm.RefreshEmails(EmailListVisual, _page);
         }
 
         private void Next_Button_Click(object sender, RoutedEventArgs e)
         {
             _page++;
-            _vm.refreshEmails(EmailListVisual, _page);
+            _vm.RefreshEmails(EmailListVisual, _page);
 
             // If page become 1 disable button
             if (_page > 1) LastVisual.IsEnabled = true;
@@ -85,7 +85,7 @@ namespace SaintSender.DesktopUI
             if (_page == 1) return;
 
             _page--;
-            _vm.refreshEmails(EmailListVisual, _page);
+            _vm.RefreshEmails(EmailListVisual, _page);
 
             // If page become 1 disable button
             if (_page == 1) LastVisual.IsEnabled = false;
@@ -93,16 +93,13 @@ namespace SaintSender.DesktopUI
 
         private void Search_Button_Click(object sender, RoutedEventArgs e)
         {
-            _page++;
-            _vm.refreshEmails(EmailListVisual, _page);
-
-            // If page become 1 disable button
-            if (_page > 1) LastVisual.IsEnabled = true;
+            _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
         }
 
         private void RemoveSearch_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            SearchTextVisual.Text = "";
+            _vm.RefreshEmails(EmailListVisual, _page);
         }
     }
 }
