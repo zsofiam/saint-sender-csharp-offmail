@@ -19,8 +19,8 @@ namespace SaintSender.Core.Services
             // Save as the first part of the email address: for example: hello.hello.hello.howlow@gmail.com becomes hello.hello.hello.howlow (nirvana rocks!)
             using (StreamWriter writer = File.CreateText(address.Split('@')[0]+".backup"))
             {
-                //try
-                //{
+                try
+                {
                 string jsonString = JsonConvert.SerializeObject(emails);
 
                     writer.Write(jsonString);
@@ -28,12 +28,11 @@ namespace SaintSender.Core.Services
                     writer.Close();
 
                     return true;
-                /*}
-                catch (Exception e)
+                }
+                catch
                 {
-                    MessageBox.Show(e.ToString());
                     return false;
-                }*/
+                }
             }
         }
 
