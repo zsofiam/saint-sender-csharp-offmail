@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="EmailSender" Height="450" Width="800">
+        Title="New Email" Height="660" Width="455">
     <Grid>
-        
+        <Button x:Name="SendVisual" Content="Send" HorizontalAlignment="Left" Margin="323,567,0,0" VerticalAlignment="Top" Width="100" Click="SendVisual_Click" Height="40"/>
+        <Button x:Name="CloseVisual" Content="Close" HorizontalAlignment="Left" Margin="23,567,0,0" VerticalAlignment="Top" Width="100" Click="CloseVisual_Click" Height="40"/>
+
     </Grid>
 </Window>

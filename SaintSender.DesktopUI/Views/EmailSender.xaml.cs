@@ -28,5 +28,19 @@ namespace SaintSender.DesktopUI.Views
 
             InitializeComponent();
         }
+
+        private void SendVisual_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CloseVisual_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Close the window without saving my content?", "Closing the window", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }
