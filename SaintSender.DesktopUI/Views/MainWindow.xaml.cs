@@ -6,6 +6,7 @@ using SaintSender.DesktopUI.Views;
 using SaintSender.Core.Services;
 using SaintSender.Core.Interfaces;
 using System.Windows.Input;
+using System;
 
 namespace SaintSender.DesktopUI
 {
@@ -43,9 +44,16 @@ namespace SaintSender.DesktopUI
             }
 
             //In case we are logged in, fetch emails
-            if (_userService.IsLoggedIn()) _vm.RefreshEmails(EmailListVisual, _page);
-
-
+            if (_userService.IsLoggedIn())
+            {
+                if (_vm.IsOnline()) _vm.RefreshEmails(EmailListVisual, _page);
+                else if (_vm.BackupExists()) _vm.LoadBackupEmails(EmailListVisual, _page);
+                else
+                {
+                    MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Environment.Exit(0);
+                }
+            }
 
             // Events
             SearchTextVisual.KeyDown += new KeyEventHandler(Search_Key);
@@ -56,7 +64,13 @@ namespace SaintSender.DesktopUI
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _vm.RefreshEmails(EmailListVisual, _page);
+            if (_vm.IsOnline()) _vm.RefreshEmails(EmailListVisual, _page);
+            else if (_vm.BackupExists()) _vm.LoadBackupEmails(EmailListVisual, _page);
+            else
+            {
+                MessageBox.Show("We tried to load your backup emails, but failed to.", "Failed to load emails", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
+            }
         }
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)

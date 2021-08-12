@@ -36,9 +36,10 @@ namespace SaintSender.Core.Services
             }
         }
 
-        public IList<EmailInfo> LoadEmails(string address)
+        public IList<EmailInfo> LoadEmails(string address, int from, int to)
         {
             IList<EmailInfo> emails;
+            IList<EmailInfo> filteredEmails = new List<EmailInfo>();
 
             using (StreamReader reader = new StreamReader(address.Split('@')[0] + ".backup"))
             {
@@ -54,12 +55,22 @@ namespace SaintSender.Core.Services
                 }
             }
 
-            return emails;
+            // only get from - to
+            for (int i = 0; i < emails.Count(); i++)
+            {
+                if ((i + 1) >= from && (i + 1) <= to) filteredEmails.Add(emails[i]);
+            }
+            return filteredEmails;
         }
 
         public void DeleteBackup(string address)
         {
             if (File.Exists(address.Split('@')[0] + ".backup")) File.Delete(address.Split('@')[0] + ".backup");
+        }
+
+        public bool BackupExitsts(string address)
+        {
+            return (File.Exists(address.Split('@')[0] + ".backup"));
         }
     }
 }

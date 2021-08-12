@@ -11,8 +11,10 @@ namespace SaintSender.Core.Interfaces
     {
         bool SaveBackup(string address, IList<EmailInfo> emails);
 
-        IList<EmailInfo> LoadEmails(string address);
+        IList<EmailInfo> LoadEmails(string address, int from, int to);
 
         void DeleteBackup(string address);
+
+        bool BackupExitsts(string address);
     }
 }
