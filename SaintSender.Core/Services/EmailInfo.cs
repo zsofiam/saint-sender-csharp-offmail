@@ -57,7 +57,9 @@ namespace SaintSender.Core.Services
         public string Body
         {
             get { return _body; }
-            set { _body = value; }
+            set { _body = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Body)));
+            }
         }
 
 
