@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SaintSender.Core.Interfaces
 {
-    interface IEmailService
+    public interface IEmailService
     {
-        IList<EmailInfo> GetEmails();
+        IList<EmailInfo> GetEmails(string address, string password, int from, int to);
     }
 }

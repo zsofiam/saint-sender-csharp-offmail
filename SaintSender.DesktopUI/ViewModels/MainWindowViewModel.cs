@@ -12,6 +12,7 @@ namespace SaintSender.DesktopUI.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
 
         /// <summary>
         /// Whenever a property value changed the subscribed event handler is called.
@@ -21,6 +22,8 @@ namespace SaintSender.DesktopUI.ViewModels
         public MainWindowViewModel(IUserService userService)
         {
             _userService = userService;
+            _emailService = new EmailService();
+            _emailService.GetEmails("codecool.offmail@gmail.com", "Password123@", 1, 25);
         }
 
         internal void logout()

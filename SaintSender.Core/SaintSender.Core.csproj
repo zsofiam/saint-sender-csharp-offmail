@@ -59,6 +59,8 @@
     <Compile Include="Interfaces\IEmailService.cs" />
     <Compile Include="Interfaces\IEnviromentService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Services\EmailInfo.cs" />
+    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\EnviromentService.cs" />
     <Compile Include="Services\GreetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
