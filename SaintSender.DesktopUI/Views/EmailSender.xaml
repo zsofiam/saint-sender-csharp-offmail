@@ -5,10 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="New Email" Height="660" Width="455">
+        Title="New Email" Height="615.2" Width="455">
     <Grid>
-        <Button x:Name="SendVisual" Content="Send" HorizontalAlignment="Left" Margin="323,567,0,0" VerticalAlignment="Top" Width="100" Click="SendVisual_Click" Height="40"/>
-        <Button x:Name="CloseVisual" Content="Close" HorizontalAlignment="Left" Margin="23,567,0,0" VerticalAlignment="Top" Width="100" Click="CloseVisual_Click" Height="40"/>
+        <Button x:Name="SendVisual" Content="Send" HorizontalAlignment="Left" Margin="323,524,0,0" VerticalAlignment="Top" Width="100" Click="SendVisual_Click" Height="40"/>
+        <Button x:Name="CloseVisual" Content="Close" HorizontalAlignment="Left" Margin="23,524,0,0" VerticalAlignment="Top" Width="100" Click="CloseVisual_Click" Height="40"/>
+        
+        <TextBox x:Name="ToVisual" HorizontalAlignment="Left" Height="23" Margin="23,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="400"/>
+        <TextBox x:Name="CCVisual" HorizontalAlignment="Left" Height="23" Margin="23,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="400"/>
+        <TextBox x:Name="SubjectVisual" HorizontalAlignment="Left" Height="23" Margin="23,161,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="400"/>
+        <TextBox x:Name="MessageVisual" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Height="292" Margin="23,227,0,0" Text="" VerticalAlignment="Top" Width="400"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="10,23,0,0" TextWrapping="Wrap" Text="To" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,80,0,0" TextWrapping="Wrap" Text="CC" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,140,0,0" TextWrapping="Wrap" Text="Subject" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,206,0,0" TextWrapping="Wrap" Text="Message" VerticalAlignment="Top" FontFamily="Yu Gothic UI Light"/>
 
     </Grid>
 </Window>
