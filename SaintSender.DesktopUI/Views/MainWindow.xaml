@@ -6,24 +6,25 @@
         xmlns:local="clr-namespace:SaintSender.DesktopUI"
         mc:Ignorable="d"
         Title="Offmail - Inbox"
-        Height="700" Width="1200" WindowStartupLocation="CenterScreen">
+        Height="700" Width="1200" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Background>
         <ImageBrush ImageSource="img/inbox-bg.jpg"/>
     </Window.Background>
     <Grid>
-        <ListView HorizontalAlignment="Left" Height="604" Margin="0,66,0,0" VerticalAlignment="Top" Width="1000">
+        <ListView x:Name="EmailListVisual" HorizontalAlignment="Left" Height="604" Margin="0,66,0,0" VerticalAlignment="Top" Width="1000">
             <ListView.View>
                 <GridView AllowsColumnReorder="False" ColumnHeaderToolTip="RecievedEmails">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SomthingAAAA}" Header="Sender" Width="250"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SomthingAAAA}" Header="Date" Width="130"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SomthingAAAA}" Header="Subject" Width="500"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=SomthingAAAA}" Header="Read/Unread" Width="120"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Sender}" Header="Sender" Width="250"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Received}" Header="Date" Width="130"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Subject}" Header="Subject" Width="500"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Read}" Header="Read/Unread" Width="120"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
         <Button Content="Logout" HorizontalAlignment="Left" Height="20" Margin="1080,18,0,0" VerticalAlignment="Top" Width="55" Click="Logout_Button_Click" RenderTransformOrigin="7.004,0.61" />
         <Button Content="Forget me" HorizontalAlignment="Left" Margin="980,18,0,0" VerticalAlignment="Top" Width="75" Click="Forget_Me_Button_Click" Height="20"/>
-        
+        <Button x:Name="RefreshVisual" Content="Refresh" HorizontalAlignment="Left" Margin="1049,144,0,0" VerticalAlignment="Top" Width="75" Height="20" Click="RefreshVisual_Click"/>
+
     </Grid>
 </Window>

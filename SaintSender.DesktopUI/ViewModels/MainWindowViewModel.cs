@@ -1,7 +1,9 @@
 ﻿using SaintSender.Core.Interfaces;
 using SaintSender.Core.Services;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
@@ -11,57 +13,31 @@ namespace SaintSender.DesktopUI.ViewModels
     /// </summary>
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        //private string _name;
-        //private string _greeting;
-        //private readonly IGreetService _greetService;
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
+
+        private IList<EmailInfo> _emailInfos;
 
         /// <summary>
         /// Whenever a property value changed the subscribed event handler is called.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public MainWindowViewModel(IUserService userService)
+        {
+            _userService = userService;
+            _emailService = new EmailService();
+        }
+
         internal void logout()
         {
             _userService.SetLoggedIn(false);
+            _userService.DeleteSession();
         }
 
         internal void ForgetMe()
         {
             _userService.DeleteCredentials();
-        }
-
-        /// <summary>
-        /// Gets or sets value of Greeting.
-        /// </summary>
-        /*public string Greeting
-        {
-            get { return _greeting; }
-            set
-            {
-                _greeting = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Greeting)));
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                _name = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
-            }
-        }*/
-
-        public MainWindowViewModel()
-        {
-            //Name = string.Empty;
-            //_greetService = new GreetService();
-            _userService = new UserService();
         }
 
         public bool AutoLogin()
@@ -74,12 +50,11 @@ namespace SaintSender.DesktopUI.ViewModels
             return _userService.IsLoggedIn();
         }
 
-        /// <summary>
-        /// Call a vendor service and apply its value into <see cref="Greeting"/> property.
-        /// </summary>
-        /*public void Greet()
+        public void refreshEmails(ListView view)
         {
-            Greeting = _greetService.Greet(Name);
-        }*/
+            _emailInfos = _emailService.GetEmails(_userService.GetSessionAddress(), _userService.GetSessionPassword(), 1, 25);
+
+            view.ItemsSource = _emailInfos;
+        }
     }
 }

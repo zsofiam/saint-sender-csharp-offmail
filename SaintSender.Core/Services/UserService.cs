@@ -17,6 +17,7 @@ namespace SaintSender.Core.Services
     public class UserService : IUserService
     {
         private const string AUTO_LOGIN_FILE = "autologin.cfg";
+        private const string SESSION_FILE = "session.cfg";
 
         private bool LoggedIn = false;
 
@@ -46,6 +47,7 @@ namespace SaintSender.Core.Services
                     client.Authenticate(address, password);
                     client.Disconnect(true);
 
+                    SaveSession(address, password);
                     return true;
                 }
                 catch
@@ -92,8 +94,85 @@ namespace SaintSender.Core.Services
                 return false;
             }
 
-            if (CanAuthenticate(address, password)) return true;
+            if (CanAuthenticate(address, password))
+            {
+                SaveSession(address, password);
+                return true;
+            }
             else return false;
+        }
+
+        public void SaveSession(string address, string password)
+        {
+            /*IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+
+            using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(SESSION_FILE, FileMode.Create, store))
+            using (StreamWriter writer = new StreamWriter(stream))*/
+            using (StreamWriter writer = new StreamWriter(SESSION_FILE))
+            {
+                writer.WriteLine(address);
+                writer.WriteLine(password);
+            }
+        }
+
+        public string GetSessionAddress()
+        {
+            string address = string.Empty;
+
+            //IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+            try
+            {
+                //using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(SESSION_FILE, FileMode.Create, store))
+                //using (StreamReader reader = new StreamReader(stream))
+                using (StreamReader reader = new StreamReader(SESSION_FILE))
+                {
+                    address = reader.ReadLine();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.ToString());
+            }
+
+            return address;
+        }
+
+        public string GetSessionPassword()
+        {
+            string password = string.Empty;
+
+            //IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+            try
+            {
+                //using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(SESSION_FILE, FileMode.Create, store))
+                //using (StreamReader reader = new StreamReader(stream))
+                using (StreamReader reader = new StreamReader(SESSION_FILE))
+                {
+                    //user
+                    reader.ReadLine();
+                    password = reader.ReadLine();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.ToString());
+            }
+
+            return password;
+        }
+
+        public void DeleteSession()
+        {
+            //IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+            try
+            {
+                //store.DeleteFile(SESSION_FILE);
+                File.Delete(SESSION_FILE);
+            }
+            catch (IsolatedStorageException)
+            {
+                Console.WriteLine("Couldn't find file.");
+            }
         }
 
         public bool IsLoggedIn()
@@ -117,6 +196,8 @@ namespace SaintSender.Core.Services
             {
                 Console.WriteLine("Couldn't find file.");
             }
+
+            DeleteSession();
         }
     }
 }
