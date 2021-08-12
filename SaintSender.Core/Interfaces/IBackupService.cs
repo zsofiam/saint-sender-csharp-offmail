@@ -13,6 +13,8 @@ namespace SaintSender.Core.Interfaces
 
         IList<EmailInfo> LoadEmails(string address, int from, int to);
 
+        IList<EmailInfo> SearchEmails(string address, string searchTerm);
+
         void DeleteBackup(string address);
 
         bool BackupExitsts(string address);

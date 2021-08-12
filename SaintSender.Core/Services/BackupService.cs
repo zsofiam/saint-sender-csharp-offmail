@@ -63,6 +63,33 @@ namespace SaintSender.Core.Services
             return filteredEmails;
         }
 
+        public IList<EmailInfo> SearchEmails(string address, string searchTerm)
+        {
+            IList<EmailInfo> emails;
+            IList<EmailInfo> filteredEmails = new List<EmailInfo>();
+
+            using (StreamReader reader = new StreamReader(address.Split('@')[0] + ".backup"))
+            {
+                try
+                {
+                    string jsonString = reader.ReadToEnd();
+
+                    emails = JsonConvert.DeserializeObject<IList<EmailInfo>>(jsonString);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            // only get from - to
+            for (int i = 0; i < emails.Count(); i++)
+            {
+                if ((emails[i].Subject != null && emails[i].Subject.Contains(searchTerm)) || (emails[i].Body != null && emails[i].Body.Contains(searchTerm)) || (emails[i].Sender != null && emails[i].Sender.Contains(searchTerm))) filteredEmails.Add(emails[i]);
+            }
+            return filteredEmails;
+        }
+
         public void DeleteBackup(string address)
         {
             if (File.Exists(address.Split('@')[0] + ".backup")) File.Delete(address.Split('@')[0] + ".backup");

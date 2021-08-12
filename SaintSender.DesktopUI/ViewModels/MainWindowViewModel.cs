@@ -77,6 +77,10 @@ namespace SaintSender.DesktopUI.ViewModels
         {
             view.ItemsSource = _emailService.GetEmails(_userService.GetSessionAddress(), _userService.GetSessionPassword(), searchTerms);
         }
+        public void SearchOfflineEmails(ListView view, string searchTerms)
+        {
+            view.ItemsSource = _backupService.SearchEmails(_userService.GetSessionAddress(), searchTerms);
+        }
 
         public bool SaveBackup()
         {

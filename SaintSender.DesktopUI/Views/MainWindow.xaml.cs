@@ -143,7 +143,8 @@ namespace SaintSender.DesktopUI
 
         private void Search_Button_Click(object sender, RoutedEventArgs e)
         {
-            _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+            if (_vm.IsOnline()) _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+            else _vm.SearchOfflineEmails(EmailListVisual, SearchTextVisual.Text);
         }
 
         private void RemoveSearch_Button_Click(object sender, RoutedEventArgs e)
@@ -162,7 +163,8 @@ namespace SaintSender.DesktopUI
         {
             if (e.Key == Key.Enter)
             {
-                _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+                if (_vm.IsOnline()) _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
+                else _vm.SearchOfflineEmails(EmailListVisual, SearchTextVisual.Text);
             }
         }
 
