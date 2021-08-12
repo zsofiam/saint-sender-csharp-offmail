@@ -115,5 +115,9 @@ namespace SaintSender.DesktopUI
                 _vm.SearchEmails(EmailListVisual, SearchTextVisual.Text);
             }
         }
+
+        private void Backup_Button_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
